@@ -1,0 +1,1 @@
+document.getElementById('js').innerText = 'O tal do Js'
