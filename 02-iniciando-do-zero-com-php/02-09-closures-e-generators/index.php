@@ -8,7 +8,7 @@ fullStackPHPClassName("02.09 - Closures e generators");
 fullStackPHPClassSession("closures", __LINE__);
 
 $myAge = function ($year) {
-    $age = date("y") - $year;
+    $age = date("Y") - $year; // parametro da função date sempre em maiusculo
     return "<h5>Você tem {$age} anos!</h5>";
 };
 
@@ -66,7 +66,7 @@ function generatorDate($days)
 }
 
 echo "<div style='text-align: center'>";
-foreach (generatorDate($iterator) as $date) {
+foreach (generatorDate(50) as $date) {
     echo "<small class='tag'>{$date}</small>" . PHP_EOL;
 }
 echo "</div>";
