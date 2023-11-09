@@ -19,22 +19,35 @@ $assoc = [
     "band_3" => "Alter Bridge",
 ];
 
-array_unshift($index, ""); // adiciona valores no inicio do array
-$index = [" "] + $index; // faz a mesma coisa que a função a cima, adiciona no incio do  array,
+array_unshift($index, "", "Pearl Jam");
+$assoc = ["band_4" => "Pearl Jam", "band_5" => ""] + $assoc;
 
-array_push($index," "); // adiciona valor no final do array
-$index = $index + [" "]; // mesma coisa da função a cima
+array_push($index, "");
+$assoc = $assoc + ["band_6" => ""];
 
-array_shift($index); // remove o primeiro item do array
-array_pop($index); // remove o ultimo item do array
 
-array_filter($index); // remove qualquer indice do array que não possua valor
+array_shift($index);
+array_shift($assoc);
+
+array_pop($index);
+array_pop($assoc);
+
+array_unshift($index, "");
+
+$index = array_filter($index);
+$assoc = array_filter($assoc);
+
+var_dump(
+    $index,
+    $assoc
+);
 
 
 /*
  * [ ordenação ] reverse | asort | ksort | sort
  */
 fullStackPHPClassSession("ordenação", __LINE__);
+
 
 $index = array_reverse($index);
 $assoc = array_reverse($assoc);
@@ -43,15 +56,17 @@ asort($index);
 asort($assoc);
 
 ksort($index);
-ksort($assoc);
+krsort($index);
 
 sort($index);
-ksort($index);
+rsort($index);
 
-var_dump([
+
+var_dump(
     $index,
     $assoc
-]);
+);
+
 /*
  * [ verificação ]  keys | values | in | explode
  */
@@ -65,14 +80,14 @@ var_dump(
 );
 
 if (in_array("AC/DC", $assoc)) {
-    echo "<p>Cause I'm back!</p>";
+    echo "<p>Cause I`m back!</p>";
 }
 
-$arrToString = implode(", ", $assoc); // transforma o array em string, com base no seletor usado
-echo "<p>Eu curto {$arrToString} e muitas outras!</p>";
+$arrToString = implode(", ", $assoc);
+echo "<p>Eu curso {$arrToString} e muitas outra!</p>";
 echo "<p>{$arrToString}</p>";
 
-var_dump(explode(", ", $arrToString)); // transforma a string em array com base no seletor usado
+var_dump(explode(", ", $arrToString));
 
 
 /**
@@ -80,19 +95,22 @@ var_dump(explode(", ", $arrToString)); // transforma a string em array com base 
  */
 fullStackPHPClassSession("exemplo prático", __LINE__);
 
+
 $profile = [
-    "name" => "Djonatan",
-    "company" => "Magazord",
-    "mail" => "djonatan.rodrigues@magazord.com.br"
+    "name" => "Robson",
+    "company" => "UpInside",
+    "mail" => "cursos@upinside.com.br"
 ];
 
-$template = <<<prf
-    <article>
-        <h1>{{name}}</h1>
-        <p>{{company}}<br>
-        <p href="mailto:{{mail}}" title="Enviar e-mail para {{name}}">Enviar E-mail</a></p>
-    </article>
-prf;
+$template = <<<TPL
+   <article>
+      <h1>{{name}}</h1>
+      <p>{{company}}<br>
+      <a href="mailto:{{mail}}" title="Enviar e-mail para {{name}}">Enviar E-mail</a></p>
+   </article>
+TPL;
+
+echo $template;
 
 echo str_replace(
     array_keys($profile), array_values($profile), $template
@@ -100,8 +118,14 @@ echo str_replace(
 
 $replaces = "{{" . implode("}}&{{", array_keys($profile)) . "}}";
 
+//var_dump(explode("&", $replaces));
 echo str_replace(
     explode("&", $replaces),
     array_values($profile),
     $template
 );
+
+
+
+
+
