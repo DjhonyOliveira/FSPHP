@@ -9,24 +9,24 @@ namespace Source\Models;
 class UserModel extends Model
 {
     /** @var array $safe no update or create */
-    protected static $safe = ["id", "created_at", "updated_at"];
+    protected static array $safe = ["id", "created_at", "updated_at"];
 
     /** @var string $entity database table */
-    protected static $entity = "users";
+    protected static string $entity = "users";
 
     /**
      * @param string $firstName
      * @param string $lastName
      * @param string $email
-     * @param string|null $document
+     * @param string|null $document_user
      * @return null|UserModel
      */
-    public function bootstrap(string $firstName, string $lastName, string $email, string $document = null): ?UserModel
+    public function bootstrap(string $firstName, string $lastName, string $email, string $document_user = null): ?UserModel
     {
         $this->first_name = $firstName;
         $this->last_name = $lastName;
         $this->email = $email;
-        $this->document = $document;
+        $this->document_user = $document_user;
         return $this;
     }
 
@@ -117,7 +117,7 @@ class UserModel extends Model
             $this->message = "Cadastro realizado com sucesso";
         }
 
-        $this->data = $this->read("SELECT * FROM users WHERE id = :id", "id={$userId}");
+        $this->data = $this->read("SELECT * FROM users WHERE id = :id", "id={$userId}")->fetch();
         return $this;
     }
 

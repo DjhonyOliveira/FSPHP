@@ -13,28 +13,29 @@ fullStackPHPClassSession("bootstrap", __LINE__);
 
 $model = new \Source\Models\UserModel();
 
+$user = $model->load(55);
+//$user = $model->bootstrap("diego", "Oliveira", "diego_2@gmail.com");
 
-$user = $model->bootstrap(
-    "Djonatan",
-    "Oliveira",
-    "djonatan@email.com",
-    34892493349
-);
+
 
 var_dump($user);
-
 
 /*
  * [ save create ] Salvar o usuário ativo (Active Record)
  */
 fullStackPHPClassSession("save create", __LINE__);
 
-if (!$model->find($user->email)) {
-    echo "<p class='trigger warning'>Cadastro</p>";
-    $user->save();
-} else {
-    echo "<p class='trigger accept'>Read</p>";
-    $user = $model->find($user->email);
+//if (!$model->find($user->email)) {
+//    echo "<p class='trigger warning'>Cadastro</p>";
+//    $user->save();
+//} else {
+//    echo "<p class='trigger accept'>Read</p>";
+//    $user = $model->find($user->email);
+//}
+
+if ($user){
+    $user->destroy();
+//    $model->save();
 }
 
 var_dump($user);

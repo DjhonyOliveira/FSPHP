@@ -11,7 +11,7 @@ fullStackPHPClassSession("save update", __LINE__);
 
 $model = new \Source\Models\UserModel();
 
-$user = $model->load(4);
+$user = $model->load(4, );
 
 if ($user != $model->load(4)) {
     $user->save();
